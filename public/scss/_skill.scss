@@ -1,0 +1,210 @@
+// Styling for the portfolio section
+#skill {
+  .skill-item {
+    right: 0;
+    margin: 0 0 15px;
+    .caption-container {
+      position: relative;
+      display: block;
+      max-width: 400px;
+      margin: 0 auto;
+      cursor: pointer;
+      .caption {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all ease 0.5s;
+        -moz-transition: all ease 0.5s;
+        transition: all ease 0.5s;
+        opacity: 0;
+        background: fade-out($theme-success, .1);
+        &:hover {
+          opacity: 1;
+        }
+        .caption-content {
+          font-size: 20px;
+          position: relative;
+          width: 100%;
+          height: 100%;
+          padding:20px;
+          text-align: center;
+          color: white;
+          i {
+            margin-top: -12px;
+          }
+          h3,
+          h4 {
+            margin: 0;
+          }
+          h4.caption-text{
+            font-size:30px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+          }
+          .skillbar-wrapper{
+            position:absolute;
+            padding:0 20px;
+            left:0;
+            bottom:20px;
+            width:100%;
+            height:25px;
+          }
+          .skillbar {
+            position:relative;
+            display:block;
+            width:100%;
+            background:#eee;
+            height:25px;
+            border-radius:3px;
+            -moz-border-radius:3px;
+            -webkit-border-radius:3px;
+            -webkit-transition:0.4s linear;
+            -moz-transition:0.4s linear;
+            -ms-transition:0.4s linear;
+            -o-transition:0.4s linear;
+            transition:0.4s linear;
+            -webkit-transition-property:width, background-color;
+            -moz-transition-property:width, background-color;
+            -ms-transition-property:width, background-color;
+            -o-transition-property:width, background-color;
+            transition-property:width, background-color;
+          }
+
+          .skillbar-title {
+            position:absolute;
+            top:0;
+            left:0;
+            width:90px;
+            font-weight:bold;
+            font-size:12px;
+            color:#ffffff;
+            background:#6adcfa;
+            -webkit-border-top-left-radius:3px;
+            -webkit-border-bottom-left-radius:4px;
+            -moz-border-radius-topleft:3px;
+            -moz-border-radius-bottomleft:3px;
+            border-top-left-radius:3px;
+            border-bottom-left-radius:3px;
+          }
+
+          .skillbar-title span {
+            display:block;
+            background:rgba(0, 0, 0, 0.1);
+            padding:0 15px;
+            height:25px;
+            line-height:25px;
+            -webkit-border-top-left-radius:3px;
+            -webkit-border-bottom-left-radius:3px;
+            -moz-border-radius-topleft:3px;
+            -moz-border-radius-bottomleft:3px;
+            border-top-left-radius:3px;
+            border-bottom-left-radius:3px;
+          }
+
+          .skillbar-bar {
+            height:25px;
+            width:0px;
+            background:#6adcfa;
+            border-radius:3px;
+            -moz-border-radius:3px;
+            -webkit-border-radius:3px;
+          }
+
+          .skill-bar-percent {
+            position:absolute;
+            right:10px;
+            top:0;
+            font-size:11px;
+            height:25px;
+            line-height:25px;
+            color:#ffffff;
+            color:rgba(0, 0, 0, 0.4);
+          }
+        }
+      }
+    }
+  }
+  * {
+    z-index: 2;
+  }
+}
+@media(min-width:767px) {
+  #skill {
+    .skill-item {
+      margin: 0 0 30px;
+    }
+  }
+}
+
+.skill-modal {
+  .modal-dialog {
+    max-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    background-clip: border-box;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    .modal-content {
+      padding: 100px 0;
+      border: 0;
+      border-radius: 0;
+      h2 {
+        font-size: 3em;
+        margin: 0;
+      }
+      img {
+        margin-bottom: 30px;
+      }
+      .item-details {
+        margin: 30px 0;
+      }
+    }
+  }
+  .close-modal {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    background-color: transparent;
+    &:hover {
+      opacity: 0.3;
+    }
+    .lr {
+      /* Safari and Chrome */
+      z-index: 1051;
+      width: 1px;
+      height: 75px;
+      margin-left: 35px;
+      /* IE 9 */
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      background-color: $theme-primary;
+      .rl {
+        /* Safari and Chrome */
+        z-index: 1052;
+        width: 1px;
+        height: 75px;
+        /* IE 9 */
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        background-color: $theme-primary;
+      }
+    }
+  }
+  .modal-backdrop {
+    display: none;
+    opacity: 0;
+  }
+}
