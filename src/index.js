@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import Skill from './components/skill';
 import Project from './components/project';
 import Contact from './components/contact';

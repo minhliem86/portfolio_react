@@ -21,6 +21,9 @@
 
     <!-- Custom styles for this template -->
     <link href="%PUBLIC_URL%/css/freelancer.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="%PUBLIC_URL%/vendor/jquery/jquery-1.10.2.min.js"></script>
+    <script src="%PUBLIC_URL%/js/vivus.min.js"></script>
 
 </head>
 
@@ -450,16 +453,14 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript -->
-<script src="%PUBLIC_URL%/vendor/jquery/jquery-1.10.2.min.js"></script>
 <script src="%PUBLIC_URL%/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="%PUBLIC_URL%/js/vivus.min.js"></script>
+
 
 <!-- Plugin JavaScript -->
 <script src="%PUBLIC_URL%/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="js/freelancer.min.js"></script>
+<script src="%PUBLIC_URL%/js/freelancer.min.js"></script>
 <script defer>
     $(document).ready(function () {
         /*HOVER CAPTION SKILL*/
@@ -473,10 +474,6 @@
             }, 300)
         });
 
-        /*ANIMATION SKILL*/
-        $('.skill-item').each(function (index) {
-            new Vivus($(this).find('.object').attr('id'), {duration: 150});
-        });
 
 
     });
