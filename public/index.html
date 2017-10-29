@@ -23,7 +23,7 @@
     <link href="%PUBLIC_URL%/css/freelancer.css" rel="stylesheet">
     <!-- Bootstrap core JavaScript -->
     <script src="%PUBLIC_URL%/vendor/jquery/jquery-1.10.2.min.js"></script>
-    <script src="%PUBLIC_URL%/js/vivus.min.js"></script>
+
 
 </head>
 
@@ -468,6 +468,7 @@
             $(this).find('.skillbar-bar').animate({
                 width: $(this).find('.skillbar').attr('data-percent'),
             }, 1500)
+            console.log($(this).find('.skillbar').attr('data-percent'));
         }, function () {
             $(this).find('.skillbar-bar').animate({
                 width: 0,

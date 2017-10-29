@@ -17,11 +17,6 @@ export default class Skill extends Component{
     componentDidMount(){
         let script = document.createElement('script');
         this.getListSkill();
-
-        /*ANIMATION SKILL*/
-        // jQuery('.skill-item').each(function (index) {
-        //    vivus(jQuery(this).find('.object').attr('id'), {duration: 150});
-        // });
     }
 
     getListSkill(){
@@ -38,7 +33,14 @@ export default class Skill extends Component{
                     <h2 className="text-center">Skills</h2>
                     <hr className="star-primary"/>
                     <div className="row">
-                        <VivusLib skillId="test" skillName="HTML" percent="70"/>
+                        {
+                            this.state.skills !== null && this.state.skills.result.length > 0 ?
+                                this.state.skills.result.map((value, key)=>
+                                    <VivusLib key={key} skillId={value.name} skillName={value.name} percent={value.percent} />
+                                )
+                                :   (<div className="col-sm-12">Không có dữ liệu</div>)
+                        }
+
                     </div>
                 </div>
             </section>

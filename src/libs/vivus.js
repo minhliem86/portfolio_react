@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Vivus from 'vivus';
 
 export default class VivusLib extends Component{
     componentDidMount(){
@@ -20,6 +21,7 @@ export default class VivusLib extends Component{
                             </div>
                         </div>
                     </div>
+                    <object id={this.props.skillId} className ="object" type="image/svg+xml" data="img/icon/photoshop-b.svg"></object>
                 </div>
             </div>
         );
