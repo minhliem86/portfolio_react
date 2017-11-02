@@ -9,7 +9,8 @@ export default class Project extends Component{
         this.state = {
             projects : null,
             showProjectItem: 3,
-            expanded: false
+            expanded: false,
+            selectedItem: null,
         }
         // BINDING
         this.onHandleShowitem = this.onHandleShowitem.bind(this);
@@ -63,7 +64,7 @@ export default class Project extends Component{
                             this.state.projects !== null && this.state.projects.result.length > 0 ? (
                                 this.state.projects.result.slice(0, this.state.showProjectItem).map( (rs, key)=>
                                     <div className="col-sm-4  portfolio-item" key={key} >
-                                        <a className="portfolio-link" onClick={this.onHandleModal} project={rs }>
+                                        <a className="portfolio-link" onClick={this.onHandleModal} project={rs}>
                                             <div className="caption">
                                                 <div className="caption-content">
                                                     <i className="fa fa-search-plus fa-3x"></i>
