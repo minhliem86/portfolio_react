@@ -5,12 +5,12 @@ const jQuery = window.jQuery;
 export default class Project extends Component{
     constructor(props){
         super(props);
-
         this.state = {
             projects : null,
             showProjectItem: 3,
             expanded: false,
-            selectedItem: null,
+            selectedImg: null,
+            selectedTitle: null
         }
         // BINDING
         this.onHandleShowitem = this.onHandleShowitem.bind(this);
@@ -46,11 +46,21 @@ export default class Project extends Component{
         }
     }
 
-    onHandleModal(event){
+    onHandleModal(rs, event){
         event.preventDefault();
+        this.setState({
+            selectedImg: rs.img_url
+        })
+
         jQuery('.modal').modal('show');
+    }
 
-
+    onHandleCloseModal(event){
+        this.setState({
+            selectedImg: null,
+            selectedtitle: null,
+        })
+        jQuery('.modal').modal('hide');
     }
 
     render(){
@@ -64,7 +74,7 @@ export default class Project extends Component{
                             this.state.projects !== null && this.state.projects.result.length > 0 ? (
                                 this.state.projects.result.slice(0, this.state.showProjectItem).map( (rs, key)=>
                                     <div className="col-sm-4  portfolio-item" key={key} >
-                                        <a className="portfolio-link" onClick={this.onHandleModal} project={rs}>
+                                        <a className="portfolio-link" onClick={this.onHandleModal.bind(this, rs)} project={rs}>
                                             <div className="caption">
                                                 <div className="caption-content">
                                                     <i className="fa fa-search-plus fa-3x"></i>
@@ -118,7 +128,7 @@ export default class Project extends Component{
                                         <div className="modal-body">
                                             <h2>Project Title</h2>
                                             <hr className="star-primary"/>
-                                            <img className="img-fluid img-centered" src="img/portfolio/submarine.png" alt=""/>
+                                            <img className="img-fluid img-centered" src={this.state.selectedImg} alt=""/>
                                             <p>Use this area of the page to describe your project. The icon above is part of a free icon
                                                 set by
                                                 <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
@@ -137,7 +147,7 @@ export default class Project extends Component{
                                                     </strong>
                                                 </li>
                                             </ul>
-                                            <button className="btn btn-success" type="button" data-dismiss="modal">
+                                            <button className="btn btn-success" type="button" onClick={this.onHandleCloseModal}>
                                                 <i className="fa fa-times"></i>
                                                 Close
                                             </button>
