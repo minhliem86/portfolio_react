@@ -9,12 +9,12 @@ export default class Project extends Component{
             projects : null,
             showProjectItem: 3,
             expanded: false,
-            selectedImg: null,
-            selectedTitle: null
+            selectedItem: null,
         }
         // BINDING
         this.onHandleShowitem = this.onHandleShowitem.bind(this);
         this.onHandleModal = this.onHandleModal.bind(this);
+        this.onHandleCloseModal = this.onHandleCloseModal.bind(this);
     }
 
     componentDidMount(){
@@ -47,18 +47,25 @@ export default class Project extends Component{
     }
 
     onHandleModal(rs, event){
+        console.log(rs);
         event.preventDefault();
+        const selectedItem = {
+            'img': rs.img_url,
+            'name': rs.name,
+            'description': rs.description,
+            'client': rs.client,
+            'service': rs.service,
+            'link': rs.link
+        };
         this.setState({
-            selectedImg: rs.img_url
+            selectedItem: selectedItem
         })
-
         jQuery('.modal').modal('show');
     }
 
     onHandleCloseModal(event){
         this.setState({
-            selectedImg: null,
-            selectedtitle: null,
+            selectedItem: null,
         })
         jQuery('.modal').modal('hide');
     }
@@ -117,7 +124,7 @@ export default class Project extends Component{
                 <div className="portfolio-modal modal fade">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
-                            <div className="close-modal" data-dismiss="modal">
+                            <div className="close-modal" onClick={this.onHandleCloseModal} >
                                 <div className="lr">
                                     <div className="rl"></div>
                                 </div>
@@ -126,24 +133,22 @@ export default class Project extends Component{
                                 <div className="row">
                                     <div className="col-lg-8 mx-auto">
                                         <div className="modal-body">
-                                            <h2>Project Title</h2>
+                                            <h2>{this.state.selectedItem !== null && this.state.selectedItem.name}</h2>
                                             <hr className="star-primary"/>
-                                            <img className="img-fluid img-centered" src={this.state.selectedImg} alt=""/>
-                                            <p>Use this area of the page to describe your project. The icon above is part of a free icon
-                                                set by
-                                                <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can
-                                                download their free set with 16 icons, or you can purchase the entire set with 146 icons
-                                                for only $12!</p>
+                                            <img className="img-fluid img-centered" src={this.state.selectedItem !== null ? this.state.selectedItem.img : 'https://lorempixel.com/250/250/cats/?17317'} alt=""/>
+                                            <div className="content-container">
+                                                {this.state.selectedItem !== null && this.state.selectedItem.description}
+                                            </div>
                                             <ul className="list-inline item-details">
                                                 <li>Client:
                                                     <strong>
-                                                        <a href="http://startbootstrap.com">Start Bootstrap</a>
+                                                        <a href={this.state.selectedItem !== null && this.state.selectedItem.link}>{this.state.selectedItem !== null && this.state.selectedItem.client}</a>
                                                     </strong>
                                                 </li>
 
                                                 <li>Service:
                                                     <strong>
-                                                        <a href="http://startbootstrap.com">Web Development</a>
+                                                        {this.state.selectedItem !== null && this.state.selectedItem.service}
                                                     </strong>
                                                 </li>
                                             </ul>
@@ -158,6 +163,9 @@ export default class Project extends Component{
                         </div>
                     </div>
                 </div>
+
+
+
             </section>  
         );
     }
