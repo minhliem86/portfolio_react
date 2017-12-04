@@ -47,7 +47,6 @@ export default class Project extends Component{
     }
 
     onHandleModal(rs, event){
-        console.log(rs);
         event.preventDefault();
         const selectedItem = {
             'img': rs.img_url,
@@ -60,17 +59,18 @@ export default class Project extends Component{
         this.setState({
             selectedItem: selectedItem
         })
-        jQuery('.modal').modal('show');
+        jQuery('.portfolio-modal').modal('show');
     }
 
     onHandleCloseModal(event){
         this.setState({
             selectedItem: null,
         })
-        jQuery('.modal').modal('hide');
+        jQuery('.portfolio-modal').modal('hide');
     }
 
     render(){
+        let config_url = 'http://localhost/portfolio_api/';
         return(
             <section id="portfolio">
                 <div className="container">
@@ -135,7 +135,7 @@ export default class Project extends Component{
                                         <div className="modal-body">
                                             <h2>{this.state.selectedItem !== null && this.state.selectedItem.name}</h2>
                                             <hr className="star-primary"/>
-                                            <img className="img-fluid img-centered" src={this.state.selectedItem !== null ? this.state.selectedItem.img : 'https://lorempixel.com/250/250/cats/?17317'} alt=""/>
+                                            <img className="img-fluid img-centered" src={this.state.selectedItem !== null ? config_url+this.state.selectedItem.img : 'https://lorempixel.com/250/250/cats/?17317'} alt=""/>
                                             <div className="content-container">
                                                 {this.state.selectedItem !== null && this.state.selectedItem.description}
                                             </div>

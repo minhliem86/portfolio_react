@@ -17,6 +17,12 @@ class CommonModel {
         let url = config_url+`projects/${id}`;
         return axios.get(url);
     }
+
+    static postContact(data = {})
+    {
+        let url = config_url+`sendContact`;
+        return axios.post(url, data);
+    }
 }
 
 export default CommonModel;

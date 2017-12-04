@@ -7,6 +7,7 @@ export default class VivusLib extends Component{
     }
     render(){
         let percent = this.props.percent + "%";
+        let config_url = 'http://localhost/portfolio_api/';
         return(
             <div className="col-sm-4 skill-item">
                 <div className="caption-container">
@@ -21,7 +22,7 @@ export default class VivusLib extends Component{
                             </div>
                         </div>
                     </div>
-                    <object id={this.props.skillId} className ="object" type="image/svg+xml" data="img/icon/photoshop-b.svg"></object>
+                    <object id={this.props.skillId} className ="object" type="image/svg+xml" data="%PUBLIC_URL%/img/icon/CSS3-b.svg"></object>
                 </div>
             </div>
         );

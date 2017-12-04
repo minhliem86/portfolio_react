@@ -36,7 +36,7 @@ export default class Skill extends Component{
                         {
                             this.state.skills !== null && this.state.skills.result.length > 0 ?
                                 this.state.skills.result.map((value, key)=>
-                                    <VivusLib key={key} skillId={value.name} skillName={value.name} percent={value.percent} />
+                                    <VivusLib key={key} skillId={value.name} skillName={value.name} percent={value.percent} img={value.img_url} />
                                 )
                                 :   (<div className="col-sm-12">Không có dữ liệu</div>)
                         }
