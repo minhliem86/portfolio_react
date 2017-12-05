@@ -12,7 +12,7 @@ export default class Contact extends Component {
             email: '',
             phone: '',
             message: '',
-            errors: null,
+            errors: {},
             mes: ''
         };
 
@@ -35,38 +35,42 @@ export default class Contact extends Component {
 
     onHandleSubmit(event) {
         event.preventDefault();
-        jQuery('#modal-contact').show();
-        // let data = {
-        //     name: this.state.name,
-        //     email: this.state.email,
-        //     phone: this.state.phone,
-        //     message: this.state.message,
-        // }
-        // CommonModel.postContact(data).then(res => {
-        //     jQuery('#modal-contact').show();
-        //     if (res.errors === null) {
-        //         this.setSate({
-        //             mes: '<p>Cảm ơn bạn đã gửi thông tin cho tôi.</p>\n' +
-        //             '                                <p>Trong trường hợp cần liên lạc sớm. Vui lòng liên hệ theo số: (+84) 902 942 054 hoặc để lại SMS.</p>\n' +
-        //             '                                <p>Chúc bạn một ngày tốt lành!</p>',
-        //             errors: null
-        //         })
-        //     } else {
-        //         this.setState({
-        //             mes: null,
-        //             errors: res.errors,
-        //         })
-        //     }
-        // });
+        let data = {
+            name: this.state.name,
+            email: this.state.email,
+            phone: this.state.phone,
+            message: this.state.message,
+        }
+        CommonModel.postContact(data).then(res => {
+            jQuery('#modal-contact').modal('show');
+            if (res.data.errors === null) {
+                this.setState({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    message: '',
+                    mes: 'Cảm ơn bạn đã gửi thông tin cho tôi.\n'+
+                    'Trong trường hợp cần liên lạc sớm. Vui lòng liên hệ theo số: (+84) 902 942 054 hoặc để lại SMS.\n' +
+                    'Chúc bạn một ngày tốt lành!',
+                    errors: {}
+                })
+            } else {
+                this.setState({
+                    mes: '',
+                    errors: res.data.errors,
+                })
+
+            }
+        });
     }
 
     onHandleCloseModal(event)
     {
         event.preventDefault();
-        jQuery('#modal-contact').hide();
+        jQuery('#modal-contact').modal('hide');
         this.setState({
-            mes: null,
-            errors: null,
+            mes: '',
+            errors: {},
         })
     }
 
@@ -84,7 +88,6 @@ export default class Contact extends Component {
                                         <label>Name</label>
                                         <input className="form-control" id="name" name="name" type="text"
                                                placeholder="Name"
-                                               required
                                                data-validation-required-message="Please enter your name."
                                                value={this.state.name} onChange={this.onHanleChange}
                                         />
@@ -95,7 +98,7 @@ export default class Contact extends Component {
                                     <div className="form-group floating-label-form-group controls">
                                         <label>Email Address</label>
                                         <input className="form-control" id="email" name="email" type="email"
-                                               placeholder="Email Address" required
+                                               placeholder="Email Address"
                                                data-validation-required-message="Please enter your email address."
                                                value={this.state.email} onChange={this.onHanleChange}
                                         />
@@ -106,7 +109,7 @@ export default class Contact extends Component {
                                     <div className="form-group floating-label-form-group controls">
                                         <label>Phone Number</label>
                                         <input className="form-control" id="phone" name="phone" type="tel"
-                                               placeholder="Phone Number" required
+                                               placeholder="Phone Number"
                                                data-validation-required-message="Please enter your phone number."
                                                value={this.state.phone} onChange={this.onHanleChange}
                                         />
@@ -117,7 +120,7 @@ export default class Contact extends Component {
                                     <div className="form-group floating-label-form-group controls">
                                         <label>Message</label>
                                         <textarea className="form-control" name="message" id="message" rows="5"
-                                                  placeholder="Message" required
+                                                  placeholder="Message"
                                                   data-validation-required-message="Please enter a message."
                                                   value={this.state.message} onChange={this.onHanleChange}
                                         ></textarea>
@@ -134,21 +137,50 @@ export default class Contact extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="modal fade" id="modal-contact">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button type="button" className="close" onClick={this.onHandleCloseModal} aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                                <h4 className="modal-title">Submition Fail!</h4>
-                            </div>
-                            <div className="modal-body">
-                                tester
+                {
+                    Object.values(this.state.errors) != null && Object.values(this.state.errors).length > 0 ? (
+                        <div className="modal fade" id="modal-contact">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h4 className="modal-title">Submition Fail!</h4>
+                                        <button type="button" className="close" onClick={this.onHandleCloseModal} aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div className="panel panel-alert">
+                                            {
+                                                Object.values(this.state.errors).map( (value, key) =>
+                                                    <p key={key}>
+                                                        {value[0]}
+                                                    </p>
+                                                )
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
+                    ) : (
+                        <div className="modal fade" id="modal-contact">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h4 className="modal-title">Submition Successful!</h4>
+                                        <button type="button" className="close" onClick={this.onHandleCloseModal} aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <p>
+                                            {this.state.mes}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
             </section>
         )
     }

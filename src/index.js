@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 
 import Skill from './components/skill';
 import Project from './components/project';

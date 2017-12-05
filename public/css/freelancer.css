@@ -218,6 +218,12 @@ header.masthead {
   z-index: 2; }
 #portfolio .portfolio-modal {
   z-index: 1050; }
+#modal-contact{
+  color:#333;
+}
+#modal-contact p{
+  font-size:14px;
+}
 
 @media (min-width: 767px) {
   #portfolio .portfolio-item {

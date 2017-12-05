@@ -142,7 +142,7 @@ export default class Project extends Component{
                                             <ul className="list-inline item-details">
                                                 <li>Client:
                                                     <strong>
-                                                        <a href={this.state.selectedItem !== null && this.state.selectedItem.link}>{this.state.selectedItem !== null && this.state.selectedItem.client}</a>
+                                                        <a href="#">{this.state.selectedItem !== null && this.state.selectedItem.client}</a>
                                                     </strong>
                                                 </li>
 

@@ -24,6 +24,11 @@
     <!-- Bootstrap core JavaScript -->
     <script src="%PUBLIC_URL%/vendor/jquery/jquery-1.10.2.min.js"></script>
 
+    <script src="%PUBLIC_URL%/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="%PUBLIC_URL%/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"}></script>
+    <!-- Plugin JavaScript -->
+    <script src="%PUBLIC_URL%/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 </head>
 
@@ -166,12 +171,6 @@
     </a>
 </div>
 
-<script src="%PUBLIC_URL%/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-<!-- Plugin JavaScript -->
-<script src="%PUBLIC_URL%/vendor/jquery-easing/jquery.easing.min.js"></script>
-
 <!-- Custom scripts for this template -->
 <script src="%PUBLIC_URL%/js/freelancer.min.js"></script>
 <script defer>
@@ -181,18 +180,13 @@
             $(this).find('.skillbar-bar').animate({
                 width: $(this).find('.skillbar').attr('data-percent'),
             }, 1500)
-            console.log($(this).find('.skillbar').attr('data-percent'));
-        }, function () {
+                    }, function () {
             $(this).find('.skillbar-bar').animate({
                 width: 0,
             }, 300)
         });
-
-
-
     });
 </script>
-
 </body>
 
 </html>
